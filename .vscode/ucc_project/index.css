@@ -1,0 +1,27 @@
+.nav{
+    padding-bottom: 50px;
+}
+
+.carrusel{
+
+    height: 400px;
+    width: 800px;
+    margin:auto
+    border 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.about_us{
+
+    height: 150px;
+    width: 800px;
+    margin:auto
+    border 2px solid #141313;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: bisque;
+    overflow: hidden;
+}
+.about_us{
+    margin-top: 25px;
+}
