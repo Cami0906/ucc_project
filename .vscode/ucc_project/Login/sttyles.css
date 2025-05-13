@@ -1,0 +1,86 @@
+/* Reset and base */
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: #555;
+  }
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    margin-bottom: 1rem;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #3b82f6;
+    outline: none;
+  }
+  .forgot-password {
+    font-size: 0.9rem;
+    color: #3b82f6;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    user-select: none;
+  }
+  .forgot-password:hover {
+    color: #1e40af;
+  }
+  button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  button:hover {
+    background: #2563eb;
+  }
+  @media (max-width: 400px) {
+    .login-container {
+      margin: 1rem;
+      width: auto;
+      padding: 1.5rem;
+    }
+  }
+  
