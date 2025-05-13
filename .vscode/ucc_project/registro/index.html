@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Registro Estudiante</title>
+<link rel="stylesheet" href=".//index.css" />
+
+</head>
+<body>
+  <div class="container" role="main">
+    <h1>Registro Estudiante</h1>
+    <form id="registroEstudiante" novalidate>
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" autocomplete="given-name" required />
+      
+      <label for="apellido">Apellido</label>
+      <input type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido" autocomplete="family-name" required />
+      
+      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+      <input type="date" id="fechaNacimiento" name="fechaNacimiento" required max="" />
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" autocomplete="email" required />
+      
+      <label for="contrasena">Contraseña</label>
+      <input type="password" id="contrasena" name="contrasena" placeholder="Crea una contraseña segura" required minlength="6" />
+      
+      <button type="submit">Registrar</button>

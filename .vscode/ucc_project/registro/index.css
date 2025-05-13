@@ -1,0 +1,104 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4a90e2, #2f2934);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .container {
+    background: #fff;
+    border-radius: 14px;
+    padding: 30px 28px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 28px;
+    color: #000000a1;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #222;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"] {
+    padding: 12px 14px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 22px;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="date"]:focus {
+    border-color: #121213;
+    outline: none;
+  }
+  button {
+    background-color: #3c3776;
+    color: white;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #4a90e2;
+  }
+  .success-message {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #28a745;
+  }
+  /* Mobile optimization: fit within 600px height */
+  @media (max-height: 600px) {
+    body {
+      padding: 10px;
+    }
+    .container {
+      padding: 22px 18px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 12px 0;
+      font-size: 1rem;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"] {
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      border-radius: 8px;
+    }
+  }
+  
