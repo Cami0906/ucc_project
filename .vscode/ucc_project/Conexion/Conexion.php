@@ -3,7 +3,7 @@
 define('DB_SERVER', 'localhost'); 
 define('DB_USERNAME', 'root'); 
 define('DB_PASSWORD', ''); 
-define('DB_NAME', 'universidad'); 
+define('DB_NAME', 'estudiantes'); 
 
 /* Genera Query  */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);

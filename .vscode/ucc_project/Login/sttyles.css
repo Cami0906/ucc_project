@@ -6,7 +6,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f0f2f5;
+    background: linear-gradient(135deg, #4a90e2, #2f2934);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +62,7 @@
     color: #1e40af;
   }
   button {
-    background: #3b82f6;
+    background: #3c3776;
     color: white;
     border: none;
     padding: 0.7rem 1.5rem;
