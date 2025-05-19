@@ -3,12 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Conectar a la base de datos
-$conexion = new mysqli("localhost", "usuario_db", "password_db", "nombre_db");
-
-// Verificar conexión
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
-}
+require_once 'Conexion.php';
 
 // Obtener datos del formulario
 $nombre = $_POST['nombre'];
@@ -24,7 +19,7 @@ $contrasenaHash = password_hash($contrasena, PASSWORD_DEFAULT);
 $stmt = $conexion->prepare("INSERT INTO estudiantes (nombre, apellido, fecha_nacimiento, email, contrasena) VALUES (?, ?, ?, ?, ?)");
 
 if (!$stmt) {
-    die("Error al preparar la consulta: " . $conexion->error);
+    die("Error al preparar la consulta: " . $link->error);
 }
 
 // Asociar parámetros
@@ -38,5 +33,5 @@ if ($stmt->execute()) {
 }
 
 $stmt->close();
-$conexion->close();
+$link->close();
 ?>
