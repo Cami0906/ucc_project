@@ -14,8 +14,8 @@ $link->begin_transaction();
 
 try {
     // Validar y sanitizar datos
-    $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-    $apellido = filter_input(INPUT_POST, 'apellido', FILTER_SANITIZE_STRING);
+    $nombre = filter_input(INPUT_POST, 'nombre');
+    $apellido = filter_input(INPUT_POST, 'apellido');
     $fechaNacimiento = $_POST['fechaNacimiento'] ?? '';
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $contrasena = $_POST['contrasena'] ?? '';
@@ -45,8 +45,12 @@ try {
     // 1. Insertar en EMAILS_ESTUDIANTES
     $stmt = $link->prepare("INSERT INTO EMAILS_ESTUDIANTES (Email) VALUES (?)");
     $stmt->bind_param("s", $email);
-    if (!$stmt->execute()) {
-        throw new Exception("Error al registrar email: " . $stmt->error);
+
+    if ($stmt->execute()) {
+        echo "Email registrado correctamente.<br>";
+        
+    }else {
+        throw new Exception("Error al registrar email: " . $stmt->error); 
     }
     $idEmail = $stmt->insert_id;
     $stmt->close();
@@ -57,7 +61,12 @@ try {
     // 2. Insertar en ESTUDIANTES
     $stmt = $link->prepare("INSERT INTO ESTUDIANTES (Nombre, Apellido, Fecha_Nacimiento, Id_Email_Estudiante, Contrasena) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssis", $nombre, $apellido, $fechaNacimiento, $idEmail, $contrasenaHash);
-    if (!$stmt->execute()) {
+
+    if ($stmt->execute()) {
+
+        echo "Estudiante registrado correctamente.<br>";
+        
+    }else {
         throw new Exception("Error al registrar estudiante: " . $stmt->error);
     }
     $stmt->close();
@@ -65,7 +74,7 @@ try {
     // Confirmar transacción
     $link->commit();
     
-    header("Location: ../registro_exitoso.html");
+    
     exit();
 } catch (Exception $e) {
     // Revertir transacción en caso de error
