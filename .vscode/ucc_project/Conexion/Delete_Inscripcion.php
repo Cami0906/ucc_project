@@ -34,7 +34,8 @@ if ($stmt->execute()) {
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color: #f4f4f9;
+                
+                background: linear-gradient(135deg, #4a90e2, #2f2934);
                 display: flex;
                 justify-content: center;
                 align-items: center;
