@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -7,18 +8,21 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit("Acceso denegado");
 }
 
+// Depuración (puedes comentar esto después de verificar)
+// echo "<pre>"; print_r($_POST); echo "</pre>"; exit();
+
 require_once 'Conexion.php';
 
 // Iniciar transacción
 $link->begin_transaction();
 
 try {
-    // Validar y sanitizar datos
-    $nombre = filter_input(INPUT_POST, 'nombre');
-    $apellido = filter_input(INPUT_POST, 'apellido');
+    // Validar y sanitizar datos (usando FILTER_SANITIZE_FULL_SPECIAL_CHARS)
+    $nombre = isset($_POST['nombre']) ? htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8') : '';
+    $apellido = isset($_POST['apellido']) ? htmlspecialchars(trim($_POST['apellido']), ENT_QUOTES, 'UTF-8') : '';
     $fechaNacimiento = $_POST['fechaNacimiento'] ?? '';
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $contrasena = $_POST['contrasena'] ?? '';
+    $contrasena = $_POST['contrasena'] ?? ''; // Nombre consistente con el formulario
 
     // Validaciones
     if (empty($nombre) || empty($apellido) || empty($fechaNacimiento) || empty($email) || empty($contrasena)) {
@@ -46,10 +50,7 @@ try {
     $stmt = $link->prepare("INSERT INTO EMAILS_ESTUDIANTES (Email) VALUES (?)");
     $stmt->bind_param("s", $email);
 
-    if ($stmt->execute()) {
-        echo "Email registrado correctamente.<br>";
-        
-    }else {
+    if (!$stmt->execute()) {
         throw new Exception("Error al registrar email: " . $stmt->error); 
     }
     $idEmail = $stmt->insert_id;
@@ -59,14 +60,10 @@ try {
     $contrasenaHash = password_hash($contrasena, PASSWORD_DEFAULT);
 
     // 2. Insertar en ESTUDIANTES
-    $stmt = $link->prepare("INSERT INTO ESTUDIANTES (Nombre, Apellido, Fecha_Nacimiento, Id_Email_Estudiante, Contrasena) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $link->prepare("INSERT INTO ESTUDIANTES (Nombre, Apellido, Fecha_Nacimiento, Id_Email_Estudiante, Contraseña) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssis", $nombre, $apellido, $fechaNacimiento, $idEmail, $contrasenaHash);
 
-    if ($stmt->execute()) {
-
-        echo "Estudiante registrado correctamente.<br>";
-        
-    }else {
+    if (!$stmt->execute()) {
         throw new Exception("Error al registrar estudiante: " . $stmt->error);
     }
     $stmt->close();
@@ -74,12 +71,16 @@ try {
     // Confirmar transacción
     $link->commit();
     
-    
+    // Respuesta exitosa
+    echo "<script>alert('Registro exitoso!'); window.location.href='../index.html';</script>";
     exit();
 } catch (Exception $e) {
     // Revertir transacción en caso de error
     $link->rollback();
-    die("Error: " . $e->getMessage());
+    
+    // Mostrar error de forma amigable
+    echo "<script>alert('Error: " . addslashes($e->getMessage()) . "'); history.back();</script>";
+    exit();
 } finally {
     $link->close();
 }
