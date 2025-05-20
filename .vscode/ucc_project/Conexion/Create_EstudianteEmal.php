@@ -8,8 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit("Acceso denegado");
 }
 
-// Depuración (puedes comentar esto después de verificar)
-// echo "<pre>"; print_r($_POST); echo "</pre>"; exit();
 
 require_once 'Conexion.php';
 
