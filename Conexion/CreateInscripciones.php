@@ -1,10 +1,15 @@
 <?php
 // listar_clases_con_inscripcion.php
+
+session_start();
+if (!isset($_SESSION["is_logged"]) || !isset($_SESSION["id_estudiante"])) {
+    header("Location: index.php"); // Redirige si no hay sesión
+    exit;
+}
 include_once "Conexion.php";
 
 // Procesar inscripción si se envió el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_clase'])) {
-    session_start();
     if (!isset($_SESSION['id_estudiante'])) {
         die("Debe iniciar sesión para inscribirse");
     }
@@ -102,6 +107,7 @@ if ($stmt->execute()) {
     $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
+        echo '<link rel="stylesheet" href="./CSS/listadoClases.css">';
         echo '<form method="post" action="">
               <table>
                 <thead>

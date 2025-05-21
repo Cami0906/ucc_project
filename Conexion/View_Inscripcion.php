@@ -1,11 +1,15 @@
 <?php
-// delete_inscripcion.php
-
+// View_Inscripcion.php
+session_start();
+if (!isset($_SESSION["is_logged"]) || !isset($_SESSION["id_estudiante"])) {
+    header("Location: index.php"); // Redirige si no hay sesión
+    exit;
+}
 // Incluye el archivo de conexión
 include_once "Conexion.php";
 
 // Obtiene los parámetros POST
-$Id_Estudiante = $_POST['Id_Estudiante'] ?? null;
+$Id_Estudiante = $_SESSION['id_estudiante'];
 
 if (!$Id_Estudiante) {
     die("Faltan parámetros necesarios");
@@ -44,6 +48,7 @@ if ($stmt->execute()) {
     $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
+        echo '<link rel="stylesheet" href="./CSS/vistaInscripciones.css">';
         // Crear tabla HTML para mostrar los resultados
         echo '<table border="1" cellpadding="8" cellspacing="0" style="width:100%">
                 <thead>

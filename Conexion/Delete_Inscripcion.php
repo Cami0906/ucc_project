@@ -1,11 +1,21 @@
 <?php
 // delete_inscripcion.php
 
+session_start();
+if (!isset($_SESSION["is_logged"]) || !isset($_SESSION["id_estudiante"])) {
+    header("Location: index.php"); // Redirige si no hay sesión
+    exit;
+}
+
 // Incluye el archivo de conexión
 include_once "Conexion.php";
 
+if (!$link) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
 // Obtiene los parámetros POST
-$Id_Estudiante = $_POST['Id_Estudiante'] ?? null;
+$Id_Estudiante = $_SESSION['id_estudiante'];
 $Id_Clase = $_POST['Id_Clase'] ?? null;
 
 if (!$Id_Estudiante || !$Id_Clase) {

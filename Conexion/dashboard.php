@@ -2,12 +2,12 @@
  session_start();
 
 // Puedes verificar si está logueado
-if (!$_SESSION["is_logged"]) {
+if (empty($_SESSION["is_logged"]) || empty($_SESSION["usuario"]) || empty($_SESSION["id_estudiante"])) {
+    session_unset();
     session_destroy();
-    header("Location: ../Conexion/index.php");
+    header("Location: index.php");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +24,10 @@ if (!$_SESSION["is_logged"]) {
     <div><a >Cerrar sesión</a></div>
   </nav>
   <main class="container">
-    <div class="box">Inscribir materias</div>
-    <div class="box">Ver materias</div>
-    <div class="box">Actualizar mis datos</div>
-    <div class="box">Borrar inscripción</div>
+    <a class="box" href="CreateInscripciones.php">Inscribir Materias</a>
+    <a class="box" href="View_Inscripcion.php">Ver Materias</a>
+    <a class="box" href="Update_estudiantes.html">Actualizar Datos</a>
+    <a class="box" href="FormularioDelete.html">Borrar inscripciones</a>
   </main>
 </body>
 </html>
