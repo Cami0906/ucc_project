@@ -70,7 +70,7 @@ try {
     $link->commit();
     
     // Respuesta exitosa
-    echo "<script>alert('Registro exitoso!'); window.location.href='../index.html';</script>";
+    echo "<script>alert('Registro exitoso!'); window.location.href='index.php';</script>";
     exit();
 } catch (Exception $e) {
     // Revertir transacción en caso de error
@@ -81,5 +81,7 @@ try {
     exit();
 } finally {
     $link->close();
+
+
 }
 ?>
