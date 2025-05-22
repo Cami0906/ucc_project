@@ -150,3 +150,24 @@ echo '</body></html>';
 $stmt->close();
 $link->close();
 ?>
+
+<!-- Botón regresar -->
+<div style="margin-top: 20px; text-align: center;">
+  <button id="btnRegresar" style="
+            background-color: #4CAF50;
+    background-color:;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;">
+    Regresar
+  </button>
+</div>
+
+<script>
+  document.getElementById("btnRegresar").addEventListener("click", function () {
+    window.history.back();
+  });
+</script>
